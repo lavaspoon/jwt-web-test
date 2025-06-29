@@ -1,0 +1,151 @@
+.board-view {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.board-header {
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.header-buttons {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.back-button,
+.edit-button {
+    padding: 8px 16px;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.back-button {
+    background-color: #4dabf7;
+}
+
+.back-button:hover {
+    background-color: #339af0;
+}
+
+.edit-button {
+    background-color: #51cf66;
+}
+
+.edit-button:hover {
+    background-color: #40c057;
+}
+
+.board-title {
+    font-size: 2em;
+    color: #333;
+    margin: 40px 0 10px;
+    text-align: center;
+}
+
+.board-info {
+    color: #666;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+    text-align: center;
+}
+
+.created-at {
+    font-size: 0.9em;
+}
+
+.attachments-section,
+.links-section {
+    margin: 20px 0;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+}
+
+.attachments-section h3,
+.links-section h3 {
+    margin-bottom: 15px;
+    color: #495057;
+}
+
+.attachments-list,
+.links-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.attachment-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color: white;
+    border-radius: 4px;
+    border: 1px solid #dee2e6;
+}
+
+.file-icon {
+    font-size: 24px;
+    margin-right: 10px;
+}
+
+.file-name {
+    flex: 1;
+    margin-right: 10px;
+    color: #495057;
+}
+
+.file-size {
+    color: #868e96;
+    margin-right: 15px;
+    white-space: nowrap;
+}
+
+.download-button {
+    padding: 6px 12px;
+    background-color: #4dabf7;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.download-button:hover {
+    background-color: #339af0;
+}
+
+.link-item {
+    padding: 10px;
+    background-color: white;
+    border-radius: 4px;
+    border: 1px solid #dee2e6;
+}
+
+.link-item a {
+    color: #4dabf7;
+    text-decoration: none;
+    word-break: break-all;
+}
+
+.link-item a:hover {
+    text-decoration: underline;
+}
+
+.board-content {
+    margin-top: 30px;
+}
+
+/* 로딩 및 에러 상태 스타일 */
+.board-view>div:only-child {
+    text-align: center;
+    padding: 40px;
+    color: #495057;
+    font-size: 1.1em;
+}

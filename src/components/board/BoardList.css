@@ -1,0 +1,131 @@
+.board-list-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.board-list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.board-list-header h1 {
+    margin: 0;
+    color: #333;
+}
+
+.write-button {
+    padding: 10px 20px;
+    background-color: #4dabf7;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.2s;
+}
+
+.write-button:hover {
+    background-color: #339af0;
+}
+
+.board-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.board-item {
+    padding: 20px;
+    background-color: white;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.board-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.board-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.board-title {
+    margin: 0;
+    font-size: 1.4em;
+    color: #333;
+}
+
+.board-date {
+    color: #868e96;
+    font-size: 0.9em;
+}
+
+.board-content-preview {
+    color: #495057;
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+.board-attachments {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.attachment-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 8px;
+    background-color: #e9ecef;
+    border-radius: 4px;
+    font-size: 0.9em;
+    color: #495057;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+    gap: 15px;
+}
+
+.page-button {
+    padding: 8px 16px;
+    background-color: #4dabf7;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.page-button:hover:not(:disabled) {
+    background-color: #339af0;
+}
+
+.page-button:disabled {
+    background-color: #adb5bd;
+    cursor: not-allowed;
+}
+
+.page-info {
+    color: #495057;
+    font-size: 1.1em;
+}
+
+.loading {
+    text-align: center;
+    padding: 40px;
+    color: #495057;
+    font-size: 1.1em;
+}
