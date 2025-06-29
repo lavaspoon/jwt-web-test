@@ -55,6 +55,7 @@ const MarkdownEditor = () => {
     const { boardId } = useParams();
     const [title, setTitle] = useState('');
     const [files, setFiles] = useState([]);
+    const [existingFiles, setExistingFiles] = useState([]);
     const editorRef = useRef();
     const fileInputRef = useRef();
     const navigate = useNavigate();
@@ -68,6 +69,9 @@ const MarkdownEditor = () => {
             setTitle(boardData.title);
             if (editorRef.current) {
                 editorRef.current.getInstance().setMarkdown(boardData.content);
+            }
+            if (boardData.attachments) {
+                setExistingFiles(boardData.attachments);
             }
         }
     }, [boardData]);
@@ -95,6 +99,10 @@ const MarkdownEditor = () => {
         return links;
     };
 
+    const handleRemoveExistingFile = (fileId) => {
+        setExistingFiles(prev => prev.filter(file => file.id !== fileId));
+    };
+
     const handleSave = async () => {
         try {
             const content = editorRef.current?.getInstance().getMarkdown();
@@ -106,21 +114,19 @@ const MarkdownEditor = () => {
             const links = extractLinks(content);
             const formData = new FormData();
 
-            // boardData를 JSON 문자열로 변환하여 추가
             const boardDataJson = JSON.stringify({
                 title: title,
                 content: content,
-                links: links
+                links: links,
+                remainingFileIds: existingFiles.map(file => file.id)
             });
             formData.append('boardData', new Blob([boardDataJson], { type: 'application/json' }));
 
-            // 파일 추가
             files.forEach(file => {
                 formData.append('files', file);
             });
 
             if (boardId) {
-                // 수정
                 updateBoard(
                     { boardId, formData },
                     {
@@ -135,7 +141,6 @@ const MarkdownEditor = () => {
                     }
                 );
             } else {
-                // 저장
                 saveBoard(formData, {
                     onSuccess: () => {
                         alert('게시글이 저장되었습니다.');
@@ -177,11 +182,27 @@ const MarkdownEditor = () => {
                         accept="image/*,.pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt,.zip,.rar,.7z,.mp4,.mov,.avi"
                     />
                     <div className="files-preview">
+                        {existingFiles.map((file) => (
+                            <div key={file.id} className="file-preview">
+                                <span className="file-icon">{getFileIcon(file.fileType)}</span>
+                                <span className="file-name">{file.originalFileName}</span>
+                                <span className="file-size">
+                                    ({formatFileSize(file.fileSize)})
+                                </span>
+                                <button
+                                    onClick={() => handleRemoveExistingFile(file.id)}
+                                    className="remove-file"
+                                >
+                                    ✕
+                                </button>
+                            </div>
+                        ))}
                         {files.map((file, index) => (
-                            <div key={index} className="file-preview">
+                            <div key={`new-${index}`} className="file-preview">
+                                <span className="file-icon">{getFileIcon(FILE_TYPES[file.type])}</span>
                                 <span className="file-name">{file.name}</span>
                                 <span className="file-size">
-                                    ({Math.round(file.size / 1024)} KB)
+                                    ({formatFileSize(file.size)})
                                 </span>
                                 <button
                                     onClick={() => handleRemoveFile(index)}
